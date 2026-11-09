@@ -283,10 +283,16 @@ function Invoke-AIDiagnostics {
 		if (-not $Results.Contains('Diagnosis')) {
 			$Results['Diagnosis'] = @()
 		}
+		$diagnosisCollection = if ($JSonOutput) {
+			ConvertTo-NitrogenDiagnosisJson -InputItems $ResponseItems
+		}
+		else {
+			$ResponseItems
+		}
 		$Results.Diagnosis += [pscustomobject]@{
 			Provider   = $ResolvedProvider
 			Generated  = (Get-Date).ToString('o')
-			Collection = $ResponseItems
+			Collection = $diagnosisCollection
 		}
 	}
 	if ($PassThru) {
