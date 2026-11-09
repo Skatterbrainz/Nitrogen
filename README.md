@@ -82,7 +82,7 @@ Initialize-NitrogenConfig
 Get-NitrogenConfig
 
 # Update prompt text in global config
-Set-NitrogenPrompt -Key diagnostics.default -Prompt "Analyze diagnostics and provide concise actions."
+Set-NitrogenPrompt -Key diagnostics.default -Prompt "Return only valid JSON findings with severity, category, recommendation, and documentation URL."
 
 # Collect event log and services diagnostics to default path
 Invoke-AIDiagnostics -Scope EventLog,Services
@@ -101,6 +101,11 @@ Invoke-AIDiagnostics -Scope EventLog,Services -SubmitPrompt -Profile default
 
 # Include AI response in PassThru output under "Diagnosis"
 Invoke-AIDiagnostics -Scope EventLog,Services -SubmitPrompt -Provider OpenAI -PassThru
+
+# Include AI response and return full payload as JSON
+# (Diagnosis.Collection is normalized to JSON objects when possible;
+# non-JSON provider output is preserved as {"rawText":"..."})
+Invoke-AIDiagnostics -Scope EventLog,Services -SubmitPrompt -Provider OpenAI -PassThru -JSonOutput
 ```
 
 ### Default output path behavior
@@ -148,7 +153,7 @@ Example config:
     }
   },
   "prompts": {
-    "diagnostics.default": "Analyze diagnostics and return concise, actionable findings."
+    "diagnostics.default": "Analyze diagnostics and return only valid JSON (no markdown) as an array of Finding, TimeStamp, Severity, Category, Recommendation, DocumentationURL objects."
   }
 }
 ```
@@ -190,7 +195,7 @@ Prompt helpers:
 Get-NitrogenConfig -Scope Local
 
 # Update local prompt and assign it to a profile
-Set-NitrogenPrompt -Scope Local -Key diagnostics.brief -Prompt "Summarize only urgent issues." -ProfileName default
+Set-NitrogenPrompt -Scope Local -Key diagnostics.brief -Prompt "Return only valid JSON findings for urgent issues with fields Finding, TimeStamp, Severity, Category, Recommendation, DocumentationURL." -ProfileName default
 ```
 
 ## 🏠 On-Premises Models (Ollama)
