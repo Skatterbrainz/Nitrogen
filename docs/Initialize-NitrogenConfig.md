@@ -159,7 +159,7 @@ Aliases:
 
 Required: False
 Position: 5
-Default value: Analyze diagnostics and return concise, actionable findings.
+Default value: Analyze diagnostics and return only valid JSON (no markdown) as an array of Finding, TimeStamp, Severity, Category, Recommendation, DocumentationURL objects.
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

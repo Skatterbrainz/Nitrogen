@@ -264,7 +264,8 @@ Accept wildcard characters: False
 Returns collected diagnostics to the pipeline.
 
 Use with `-JSonOutput` to return JSON instead of objects. When `-SubmitPrompt` is also used, the
-returned payload includes a `Diagnosis` collection with the provider response.
+returned payload includes a `Diagnosis` collection with provider response data normalized to JSON.
+If a provider returns non-JSON text, the entry is preserved as `{ "rawText": "<original>" }`.
 
 ```yaml
 Type: SwitchParameter
@@ -280,7 +281,8 @@ Accept wildcard characters: False
 
 ### -JSonOutput
 
-When used with `-PassThru`, returns diagnostics as JSON.
+When used with `-PassThru`, returns diagnostics as JSON. AI diagnosis responses are parsed as JSON
+when possible.
 
 ```yaml
 Type: SwitchParameter

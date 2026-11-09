@@ -1,5 +1,12 @@
 # Revision History
 
+## 1.4.0 - 2026-11-09
+- Improved `Invoke-AIDiagnostics -PassThru -JSonOutput` so `Diagnosis.Collection` is normalized to JSON objects when provider output is valid JSON.
+- Added `ConvertTo-NitrogenDiagnosisJson` to parse provider responses and preserve non-JSON responses as `{ "rawText": "..." }`.
+- Updated the module default diagnostics prompt to require JSON-only output (no markdown/prose) with the expected finding schema.
+- Updated `Initialize-NitrogenConfig` default `PromptText` to use the JSON-only diagnostics contract.
+- Updated docs/README to reflect JSON diagnosis normalization and the stricter JSON output prompt guidance.
+
 ## 1.3.0 - 2026-10-17
 - Added `Ollama` provider for on-premises / local models (`-Provider Ollama`).
 - Added `Get-OllamaModels` to list models on an Ollama server (`/api/tags`), with caching and `-Refresh`.

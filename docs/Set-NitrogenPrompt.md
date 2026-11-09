@@ -27,7 +27,7 @@ Writes prompt text to `prompts.<Key>` and optionally assigns that key to a profi
 ### Example 1
 
 ```powershell
-Set-NitrogenPrompt -Key diagnostics.default -Prompt "Analyze diagnostics and provide actions."
+Set-NitrogenPrompt -Key diagnostics.default -Prompt "Return only valid JSON findings with Finding, TimeStamp, Severity, Category, Recommendation, DocumentationURL."
 ```
 
 Updates prompt text in global config.
@@ -35,7 +35,7 @@ Updates prompt text in global config.
 ### Example 2
 
 ```powershell
-Set-NitrogenPrompt -Scope Local -Key diagnostics.short -Prompt "Keep output short." -ProfileName default
+Set-NitrogenPrompt -Scope Local -Key diagnostics.short -Prompt "Return only valid JSON findings with concise recommendations." -ProfileName default
 ```
 
 Updates local prompt and assigns it to profile `default`.
@@ -43,7 +43,7 @@ Updates local prompt and assigns it to profile `default`.
 ### Example 3
 
 ```powershell
-Set-NitrogenPrompt -ConfigPath ./config/nitrogen.json -Key diagnostics.work -Prompt "Focus on production-impacting findings." -ProfileName work -CreateProfile
+Set-NitrogenPrompt -ConfigPath ./config/nitrogen.json -Key diagnostics.work -Prompt "Return only valid JSON findings; prioritize production-impacting issues." -ProfileName work -CreateProfile
 ```
 
 Updates explicit config path and creates the profile when missing.
