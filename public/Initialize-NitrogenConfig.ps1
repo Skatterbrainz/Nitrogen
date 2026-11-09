@@ -39,7 +39,7 @@ function Initialize-NitrogenConfig {
 		[Parameter(Mandatory = $false)][string]$ProfileName = 'default',
 		[Parameter(Mandatory = $false)][ValidateSet('OpenAI', 'Anthropic', 'AzureOpenAI', 'Google', 'Perplexity', 'Ollama')][string]$Provider = 'OpenAI',
 		[Parameter(Mandatory = $false)][string]$PromptKey = 'diagnostics.default',
-		[Parameter(Mandatory = $false)][string]$PromptText = 'Analyze diagnostics and return concise, actionable findings.',
+		[Parameter(Mandatory = $false)][string]$PromptText = 'Analyze diagnostics and return only valid JSON (no markdown) as an array of Finding, TimeStamp, Severity, Category, Recommendation, DocumentationURL objects.',
 		[Parameter(Mandatory = $false)][ValidateRange(1, 5000)][int]$MaxItems = 100,
 		[Parameter(Mandatory = $false)][switch]$Force,
 		[Parameter(Mandatory = $false)][switch]$ConfigureSecretVault,
