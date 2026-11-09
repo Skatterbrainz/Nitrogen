@@ -9,8 +9,8 @@ Analyze the following Windows diagnostic data and provide a summary of the findi
 3. Keep responses concise and focused on actionable insights
 4. Categorize by type of finding (e.g., EventLog, Services, Processes, Registry, Disk, Memory, System)
 5. Provide URL links to relevant documentation for each recommendation
-6. Result should be returned in JSON format: Finding, TimeStamp, Severity, Category, Recommendation, DocumentationURL
-$JsonFile
+6. Return only valid JSON (no markdown or prose), as an array of objects with this schema:
+   Finding, TimeStamp, Severity, Category, Recommendation, DocumentationURL
 "@
 
 if ($IsLinux) {
